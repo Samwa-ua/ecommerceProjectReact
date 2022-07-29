@@ -14,7 +14,7 @@ const SingleProduct = ({ match }) => {
       setProduct(data);
     };
     fetchProduct();
-  }, []);
+  }, [match]);
 
   return (
     <>
