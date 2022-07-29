@@ -1,12 +1,21 @@
-import React from "react";
-import Header from "./../components/Header";
-import Rating from "../components/homeComponents/Rating";
-import { Link } from "react-router-dom";
-import Message from "./../components/LoadingError/Error";
-import products from "../data/Products";
+import React, { useEffect, useState } from 'react';
+import Header from './../components/Header';
+import Rating from '../components/homeComponents/Rating';
+import { Link } from 'react-router-dom';
+import Message from './../components/LoadingError/Error';
+import axios from 'axios';
 
 const SingleProduct = ({ match }) => {
-  const product = products.find((p) => p._id === match.params.id);
+  const [product, setProduct] = useState({});
+
+  useEffect(() => {
+    const fetchProduct = async () => {
+      const { data } = await axios.get(`/api/products/${match.params.id}`);
+      setProduct(data);
+    };
+    fetchProduct();
+  }, []);
+
   return (
     <>
       <Header />
@@ -68,7 +77,7 @@ const SingleProduct = ({ match }) => {
         <div className="row my-5">
           <div className="col-md-6">
             <h6 className="mb-3">REVIEWS</h6>
-            <Message variant={"alert-info mt-3"}>No Reviews</Message>
+            <Message variant={'alert-info mt-3'}>No Reviews</Message>
             <div className="mb-5 mb-md-3 bg-light p-3 shadow-sm rounded">
               <strong>Admin Doe</strong>
               <Rating />
@@ -111,12 +120,12 @@ const SingleProduct = ({ match }) => {
               </div>
             </form>
             <div className="my-3">
-              <Message variant={"alert-warning"}>
-                Please{" "}
+              <Message variant={'alert-warning'}>
+                Please{' '}
                 <Link to="/login">
                   " <strong>Login</strong> "
-                </Link>{" "}
-                to write a review{" "}
+                </Link>{' '}
+                to write a review{' '}
               </Message>
             </div>
           </div>
