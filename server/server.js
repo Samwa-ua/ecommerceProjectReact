@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import products from './data/Products.js';
 import connectDataBase from './config/MongoDB.js';
 import importData from './DataImport.js';
+import productRoute from './Routes/ProductRouts.js';
 
 dotenv.config();
 connectDataBase();
@@ -12,6 +13,7 @@ const app = express();
 //API
 
 app.use('/api/import', importData);
+app.use('/api/products', productRoute);
 
 app.get('/', (req, res) => {
   res.send('API is running...');
