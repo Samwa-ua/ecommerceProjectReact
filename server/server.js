@@ -4,6 +4,7 @@ import products from './data/Products.js';
 import connectDataBase from './config/MongoDB.js';
 import importData from './DataImport.js';
 import productRoute from './Routes/ProductRouts.js';
+import { errorHandler, notFound } from './Middleware/Errors.js';
 
 dotenv.config();
 connectDataBase();
@@ -14,10 +15,8 @@ const app = express();
 
 app.use('/api/import', importData);
 app.use('/api/products', productRoute);
-
-app.get('/', (req, res) => {
-  res.send('API is running...');
-});
+app.use(notFound);
+app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
 
