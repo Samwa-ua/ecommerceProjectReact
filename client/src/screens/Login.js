@@ -33,7 +33,7 @@ const Login = ({ location, history }) => {
     <>
       <Header />
       <div className="container d-flex flex-column justify-content-center align-items-center login-center">
-        {error && <Message variant={'alert-danger'}>{error}</Message>}
+        {error && <Message variant="alert-danger">{error}</Message>}
         {loading && <Loading />}
         <form
           className="Login col-md-8 col-lg-4 col-11"
