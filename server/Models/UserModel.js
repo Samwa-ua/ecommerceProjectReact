@@ -1,23 +1,24 @@
 import mongoose from 'mongoose';
 import bcrypt from 'bcryptjs';
+
 const userSchema = mongoose.Schema(
   {
     name: {
       type: String,
-      require: true,
+      required: true,
     },
     email: {
       type: String,
-      require: true,
+      required: true,
       unique: true,
     },
     password: {
       type: String,
-      require: true,
+      required: true,
     },
     isAdmin: {
       type: Boolean,
-      require: true,
+      required: true,
       default: false,
     },
     createdAt: { type: Date, default: Date.now },
