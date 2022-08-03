@@ -4,7 +4,9 @@ import {
   ORDER_CREATE_FAIL,
   ORDER_CREATE_REQUEST,
   ORDER_CREATE_SUCCESS,
+  ORDER_DETAILS_FAIL,
   ORDER_DETAILS_REQUEST,
+  ORDER_DETAILS_SUCCESS,
 } from '../Constants/OrderConstants';
 import { logout } from './UserActions';
 
@@ -55,11 +57,8 @@ export const getOrderDetails = (id) => async (dispatch, getState) => {
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
-    const { data } = await axios.post(`/api/orders/${id}`, order, config);
-    dispatch({ type: ORDER_CREATE_SUCCESS, payload: data });
-    dispatch({ type: CART_CLEAR_ITEMS, payload: data });
-
-    localStorage.removeItem('cartItems');
+    const { data } = await axios.get(`/api/orders/${id}`, config);
+    dispatch({ type: ORDER_DETAILS_SUCCESS, payload: data });
   } catch (error) {
     const message =
       error.response && error.response.data.message
@@ -69,7 +68,7 @@ export const getOrderDetails = (id) => async (dispatch, getState) => {
       dispatch(logout());
     }
     dispatch({
-      type: ORDER_CREATE_FAIL,
+      type: ORDER_DETAILS_FAIL,
       payload: message,
     });
   }
