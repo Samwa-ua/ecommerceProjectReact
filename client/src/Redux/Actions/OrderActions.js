@@ -1,5 +1,3 @@
-import axios from 'axios';
-import { CART_CLEAR_ITEMS } from '../Constants/CartConstants';
 import {
   ORDER_CREATE_FAIL,
   ORDER_CREATE_REQUEST,
@@ -11,6 +9,8 @@ import {
   ORDER_PAY_REQUEST,
   ORDER_PAY_SUCCESS,
 } from '../Constants/OrderConstants';
+import axios from 'axios';
+import { CART_CLEAR_ITEMS } from '../Constants/CartConstants';
 import { logout } from './UserActions';
 
 //Create Order
