@@ -3,6 +3,7 @@ import User from './Models/UserModel.js';
 import Product from './Models/ProductModel.js';
 import users from './data/Users.js';
 import asyncHandler from 'express-async-handler';
+import products from './data/Products.js';
 
 const importData = express.Router();
 
