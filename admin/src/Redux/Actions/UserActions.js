@@ -11,7 +11,7 @@ import {
   USER_LOGOUT,
 } from '../Constants/UserConstants';
 
-//Login
+// LOGIN
 export const login = (email, password) => async (dispatch) => {
   const ToastObjects = {
     pauseOnFocusLoss: false,
@@ -27,11 +27,13 @@ export const login = (email, password) => async (dispatch) => {
         'Content-Type': 'application/json',
       },
     };
+
     const { data } = await axios.post(
       `/api/users/login`,
       { email, password },
       config
     );
+
     if (!data.isAdmin === true) {
       toast.error('You are not Admin', ToastObjects);
       dispatch({
@@ -57,18 +59,18 @@ export const login = (email, password) => async (dispatch) => {
   }
 };
 
-//Logout
-
-export const logout = () => async (dispatch) => {
+// LOGOUT
+export const logout = () => (dispatch) => {
   localStorage.removeItem('userInfo');
   dispatch({ type: USER_LOGOUT });
   dispatch({ type: USER_LIST_RESET });
 };
 
-//Get all users
+// ALL USER
 export const listUser = () => async (dispatch, getState) => {
   try {
     dispatch({ type: USER_LIST_REQUEST });
+
     const {
       userLogin: { userInfo },
     } = getState();
@@ -78,7 +80,9 @@ export const listUser = () => async (dispatch, getState) => {
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
+
     const { data } = await axios.get(`/api/users`, config);
+
     dispatch({ type: USER_LIST_SUCCESS, payload: data });
   } catch (error) {
     const message =
