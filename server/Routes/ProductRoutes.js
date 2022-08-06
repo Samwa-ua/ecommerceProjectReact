@@ -102,5 +102,35 @@ productRouter.delete(
     }
   })
 );
+// Create product
+productRouter.post(
+  '/',
+  protect,
+  admin,
+  asyncHandler(async (req, res) => {
+    const { name, price, description, image, countInStock } = req.body;
+    const productExist = await Product.findOne({ name });
+    if (productExist) {
+      res.status(400);
+      throw new Error('Product name already exist');
+    } else {
+      const product = new Product({
+        name,
+        price,
+        description,
+        image,
+        countInStock,
+        user: req.user._id,
+      });
+      if (product) {
+        const createdproduct = await product.save();
+        res.status(201).json(createdproduct);
+      } else {
+        res.status(400);
+        throw new Error('Invalid product data');
+      }
+    }
+  })
+);
 
 export default productRouter;
