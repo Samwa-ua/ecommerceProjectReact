@@ -39,7 +39,6 @@ const OrderScreen = ({ match }) => {
       script.async = true;
       const loadScript = () => {
         setSdkReady(true);
-        console.log(sdkReady);
       };
       //   script.onload = () => {
       //     setSdkReady(true);
