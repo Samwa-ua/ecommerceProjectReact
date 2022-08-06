@@ -1,11 +1,10 @@
-import React from "react";
-import Sidebar from "./../components/sidebar";
-import Header from "./../components/Header";
-import EditProductMain from "./../components/products/EditproductMain";
-import products from "./../data/Products";
+import React from 'react';
+import Sidebar from './../components/sidebar';
+import Header from './../components/Header';
+import EditProductMain from './../components/products/EditproductMain';
 
 const ProductEditScreen = ({ match }) => {
-  const productId = products.find((p) => p._id === match.params.id);
+  const productId = match.params.id;
   return (
     <>
       <Sidebar />
