@@ -8,7 +8,7 @@ const productRouter = express.Router();
 productRouter.get(
   '/',
   asyncHandler(async (req, res) => {
-    const pageSize = 3;
+    const pageSize = 6;
     const page = Number(req.query.pageNumber) || 1;
     const keyword = req.query.keyword
       ? {
@@ -26,6 +26,7 @@ productRouter.get(
     res.json({ products, page, pages: Math.ceil(count / pageSize) });
   })
 );
+
 //Admin get all products
 productRouter.get(
   '/all',
