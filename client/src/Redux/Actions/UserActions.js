@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { URL } from '../../utils/Url';
 import { ORDER_LIST_MY_RESET } from '../Constants/OrderConstants';
 import {
   USER_DETAILS_FAIL,
@@ -28,7 +29,7 @@ export const login = (email, password) => async (dispatch) => {
       },
     };
     const { data } = await axios.post(
-      `/api/users/login`,
+      `${URL}/api/users/login`,
       { email, password },
       config
     );
@@ -68,7 +69,7 @@ export const register = (name, email, password) => async (dispatch) => {
       },
     };
     const { data } = await axios.post(
-      `/api/users`,
+      `${URL}/api/users`,
       { name, email, password },
       config
     );
@@ -100,7 +101,7 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
-    const { data } = await axios.get(`/api/users/${id}`, config);
+    const { data } = await axios.get(`${URL}/api/users/${id}`, config);
     dispatch({ type: USER_DETAILS_SUCCESS, payload: data });
   } catch (error) {
     const message =
@@ -130,7 +131,7 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
-    const { data } = await axios.put(`/api/users/profile`, user, config);
+    const { data } = await axios.put(`${URL}/api/users/profile`, user, config);
     dispatch({ type: USER_UPDATE_PROFILE_SUCCESS, payload: data });
     dispatch({ type: USER_LOGIN_SUCCESS, payload: data });
     localStorage.setItem('userInfo', JSON.stringify(data));
