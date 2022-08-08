@@ -1,10 +1,10 @@
 ## Description
 
-This is a template project build during studying React using modern MERN stack.
+This is a template project created while learning React using the modern MERN stack.
 
 ## Installation
 
-To run this project in your local machine:
+To run this project on your local machine:
 
 - Clone the repo
 - Install [node.js and npm](https://nodejs.org/)
