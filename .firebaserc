@@ -1,0 +1,17 @@
+{
+  "projects": {
+    "default": "reactdemoshop"
+  },
+  "targets": {
+    "reactdemoshop": {
+      "hosting": {
+        "admin": [
+          "admin-demo-one"
+        ],
+        "client": [
+          "reactdemoshop"
+        ]
+      }
+    }
+  }
+}
